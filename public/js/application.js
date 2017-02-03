@@ -29,11 +29,23 @@ $("section.login-nav").on("click","form.new-user-form input[type=submit]", funct
 		type: "POST",
 		data: data
 	}).done(function(response){
-    console.log(response)
+    $("section.login-nav").append(response);
   });
 
 	$(".registration").remove();
-	$(".login-nav").append(result)
+	$("section.login-nav").append(result);
+});
+
+//on click of logout button that was added after registration
+$("section.login-nav").on("click","a#logout", function(event){
+  event.preventDefault()
+
+  $.ajax({
+    url: '/sessions',
+    type: "DELETE"
+  })
+
+  $("section.dynamic-login-nav").remove()
 });
 
 //on click of login button

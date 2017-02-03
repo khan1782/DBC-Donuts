@@ -1,4 +1,4 @@
-#form for creating new user
+#form for creating new user, accessed via register button click
 get '/users/new' do
   if request.xhr?
   	erb :'partials/_registrationform', layout: false
@@ -8,14 +8,17 @@ get '/users/new' do
   end
 end
 
-#post for creating new user
+#post for creating new user, made through registration button submission
 post '/users' do
-  new_user = User.new(params[:user])
-  # new_user.save
-  if request.xhr?
-
+  @new_user = User.new(params[:user])
+  if @new_user.save
+    session[:user_id] = @new_user.id
+    if request.xhr?
+      erb :'partials/_loggedinbuttons', layout: false
+    else
+      redirect '/'
+    end
   end
-
 end
 
 
