@@ -26,5 +26,7 @@ end
 
 delete '/sessions' do
   session[:user_id] = nil
+  if request.xhr? == false
   redirect '/'
+end
 end
