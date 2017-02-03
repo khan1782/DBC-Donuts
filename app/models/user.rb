@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   has_many :orders
   has_many :testimonials
-  has_many :donutorders, through: :orders
-  has_many :donuts, through: :donutorders
+  has_many :orderdonuts, through: :orders
+  has_many :donuts, through: :orderdonuts
 
   validates_uniqueness_of :email
   validates_presence_of :first_name, :last_name, :email, :hashed_password

@@ -1,5 +1,5 @@
-class Donutorder < ActiveRecord::Base
-	has_many :donuts
+class Orderdonut < ActiveRecord::Base
+	belongs_to :donut
 	belongs_to :order
 	has_many :users, through: :orders
 	has_many :testimonials, through: :orders
