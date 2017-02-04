@@ -1,6 +1,1 @@
-#DBC Donuts
-
-A place to buy donuts.
-
-
-end
+Skeleton for Sinatra Web App
