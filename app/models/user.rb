@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 	has_many :orders
 	has_many :donuts, through: :orders
 	has_many :testimonials, through: :orders
+  has_many :wholesales, through: :orders
 
 	def authenticated?(password)
     self.password == password
