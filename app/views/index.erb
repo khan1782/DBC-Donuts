@@ -1,5 +1,14 @@
 <div class="container">
-	<h1>DBC Donut Ordering</h1>
-	
-	<a href="/donutshop/<%= @current_donutshop.id %>/menuitems"> This week's Menu</a> 
+	<!-- Main Title -->
+	<h1 id='main-page-title'>DBC Donut Ordering</h1>
+	<a href="/donutshop/<%= @current_donutshop.id %>/menuitems"> This week's Menu</a>
+	<% if logged_in? %>
+		<a href="/orders">Order now</a>
+	<% end %>
+
+
+	<!-- Iterating three testimonials -->
+	<% @sample_testimonials.each do |review| %>
+		<p>"<%= review.body%>" -<%=review.author%>, <%=standard_datetime(review.created_at)%></p>
+	<% end %>
 </div>

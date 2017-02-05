@@ -70,6 +70,7 @@ $("div.nav").on("click", "input#login-button", function(event) {
   	data: form
   }).done(function(response){
   	$("section.login-nav").append(response);
+    $("h1#main-page-title").append("<a href='/orders'>Order now</a>");
   });
   $("container.login").remove();
 
