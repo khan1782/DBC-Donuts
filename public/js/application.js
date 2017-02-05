@@ -53,7 +53,7 @@ $("section.login-nav").on("click","a#login", function(event){
     url: '/sessions/new',
     type: 'GET'
   }).done(function(response){
-      $(".login-nav").append(response)
+      $("div.nav").append(response)
   });
 
 });
