@@ -4,8 +4,9 @@ class User < ActiveRecord::Base
 	has_many :testimonials, through: :orders
   has_many :wholesales, through: :orders
 
-	def authenticated?(password)
-    self.password == password
+  def self.authenticate(user_hash)
+    user = User.find_by(email: user_hash[:email])
+    return user if user && user.password == user_hash[:password]
   end
 
   def password
