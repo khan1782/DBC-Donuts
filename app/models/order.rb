@@ -24,4 +24,11 @@
 	def total
 		self.subtotal + self.delivery_cost + self.tax
 	end
+
+	def add(donut_array) 
+		price = Menuitem.find_by(item_type: donut_array[0]).price
+		donut_array[1].to_i.times do 
+			Donut.create(donut_type: donut_array[0], price: price, order_id: self.id)
+		end
+	end
 end
