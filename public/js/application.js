@@ -14,8 +14,6 @@ $(".login-nav").on("click","a#register", function(event){
 });
 
 
-
-
 //on submit of registration form send post request and remove form
 $("section.login-nav").on("click","form.new-user-form input[type=submit]", function(event){
 	event.preventDefault();
@@ -53,8 +51,10 @@ $("section.login-nav").on("click","a#login", function(event){
     url: '/sessions/new',
     type: 'GET'
   }).done(function(response){
-      $("div.nav").append(response)
+      $("div.nav").append(response);
+      // $("a#login").remove()
   });
+
 
 });
 

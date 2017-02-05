@@ -9,16 +9,20 @@ th {
 }
 
 input#logout-button {
-    background-color: transparent;
-    border: transparent;
-    color: blue;
+  background-color: transparent;
+  border: transparent;
+  color: blue;
     /* font-style: inherit; */
-    text-decoration: underline;
+  text-decoration: underline;
     /* display: flex; */
 }
 
 form#logout {
-    display: inline;
+  display: inline;
+}
+
+div.dynamic-login-nav {
+  display: inline;
 }
 
 /*

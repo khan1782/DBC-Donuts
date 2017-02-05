@@ -1,12 +1,14 @@
 <section class='login-nav'>
   <a id='home' href='/'>home</a>
-  <a id= 'login' href="/sessions/new">login</a>
+  <% if !logged_in? %>
+    <a id= 'login' href="/sessions/new">login</a>
+  <% end %>
   <a id= 'register' href="/users/new">register</a>
   <% if logged_in? %>
-  <a id='profile' href="/users/<%= session[:user_id]%>"><%=current_user.first_name.downcase %></a>
-  <form id='logout' method="post" action ="/sessions">
-    <input type="hidden" value="delete" name="_method">
-    <input id='logout-button' type="submit" value="logout">
-  </form>
+    <a id='profile' href="/users/<%= session[:user_id]%>"><%=current_user.first_name.downcase %></a>
+    <form id='logout' method="post" action ="/sessions">
+      <input type="hidden" value="delete" name="_method">
+      <input id='logout-button' type="submit" value="logout">
+    </form>
   <% end %>
-<section>
+</section>
