@@ -6,6 +6,7 @@
 		<a href="/orders">Order now</a>
 	<% end %>
 
+	<h2>Deadline for next order: <%=standard_datetime(@current_wholesale.deadline)%></h2>
 
 	<!-- Iterating three testimonials -->
 	<% @sample_testimonials.each do |review| %>

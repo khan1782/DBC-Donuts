@@ -1,3 +1,3 @@
 	def standard_datetime(datetime)
-		datetime.strftime("%b %d,%Y")
+		datetime.strftime("%b %d, %Y")
 	end

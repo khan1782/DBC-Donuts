@@ -7,7 +7,7 @@ class Testimonial < ActiveRecord::Base
 	end
 
 	def author
-		User.find_by_id(self.order.user_id).first_nameg
+		User.find_by_id(self.order.user_id).first_name
 	end
 
 end
