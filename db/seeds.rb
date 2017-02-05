@@ -1,6 +1,16 @@
 #Donutshop
 Donutshop.create ([
-	{name:"Stans Donuts"}
+	{name:"Stans Donuts", current_shop: true}
+])
+
+Menuitem.create([
+	{item_type: "glazed",					price: 3,			donutshop_id: 1},
+	{item_type: "chocolate",				price: 3,			donutshop_id: 1},
+	{item_type: "cinammon roll",		price: 3,			donutshop_id: 1},
+	{item_type: "powdered sugar",	price: 3,			donutshop_id: 1},
+	{item_type: "jelly filled",		price: 3,			donutshop_id: 1},
+	{item_type: "custard filled",	price: 3,			donutshop_id: 1},
+	{item_type: "pistachio",				price: 3,			donutshop_id: 1}
 ])
 
 #Users
