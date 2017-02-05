@@ -3,7 +3,7 @@ def logged_in?
 end
 
 def current_user
-   @_current ||= User.find_by(id: session[:user_id])
+   User.find_by(id: session[:user_id])
 end
 
 def set_user(user)

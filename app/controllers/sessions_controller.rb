@@ -12,6 +12,7 @@ post '/sessions' do
   if request.xhr?
     @new_user = User.authenticate(params[:user])
     if @new_user
+
       session[:user_id] = @new_user.id
       erb :'partials/_loggedinbuttons', layout: false
     else
@@ -19,6 +20,8 @@ post '/sessions' do
       # @error = "Username or password doesn't match existing account information"
       # erb :'sessions/new'
     end
+  else
+  "NOT AUTHORIZED"
   end
 end
 

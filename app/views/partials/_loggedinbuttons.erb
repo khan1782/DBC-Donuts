@@ -1,4 +1,7 @@
  <div class='dynamic-login-nav'>
- <a id='profile' href="/users/<%= session[:user_id]%>"><%=@new_user.first_name%></a>
- <a id='logout' href='/'>Logout</a>
+<a id='profile' href="/users/<%= session[:user_id]%>"><%=current_user.first_name.downcase %></a>
+  <form id='logout' method="post" action ="/sessions">
+    <input type="hidden" value="delete" name="_method">
+    <input id='logout-button' type="submit" value="logout">
+  </form>
 </div>

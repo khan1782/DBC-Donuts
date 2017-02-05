@@ -60,8 +60,9 @@ $("section.login-nav").on("click","a#login", function(event){
 
 
 //on click of submit of login form send post request and log person in
-$("section.login-nav").on("click", "form.login-form input[type=submit]", function(event) {
+$("div.nav").on("click", "input#login-button", function(event) {
   event.preventDefault()
+  console.log("clicked!!!!!")
   var form = $("form.login-form").serialize();
   $.ajax({
   	url: '/sessions',
