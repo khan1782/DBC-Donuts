@@ -27,6 +27,8 @@ $("section.login-nav").on("click","form.new-user-form input[type=submit]", funct
 		data: data
 	}).done(function(response){
     $("section.login-nav").append(response);
+    $("a#login").hide()
+    $("span.index-links").append("<a href='/orders/new'>Order now</a>");
   });
 	$(".registration").remove();
 });
