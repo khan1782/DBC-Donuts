@@ -27,7 +27,7 @@ $("section.login-nav").on("click","form.new-user-form input[type=submit]", funct
 		data: data
 	}).done(function(response){
     $("section.login-nav").append(response);
-    $("a#login").hide()
+    $("a#login").hide();
     $("span.index-links").append("<a href='/orders/new'>Order now</a>");
   });
 	$(".registration").remove();
@@ -71,8 +71,9 @@ $("div.nav").on("click", "input#login-button", function(event) {
   	type: 'POST',
   	data: form
   }).done(function(response){
+    $("a#login").hide()
   	$("section.login-nav").append(response);
-    $("h1#main-page-title").append("<a href='/orders'>Order now</a>");
+    $("span.index-links").append("<a href='/orders/new'>Order now</a>");
   });
   $("container.login").remove();
 
