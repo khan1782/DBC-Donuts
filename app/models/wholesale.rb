@@ -4,4 +4,8 @@ class Wholesale < ActiveRecord::Base
 	has_many :users, through: :orders
 	has_many :testimonials, through: :orders
 
+	def confirmed_orders
+			self.orders.select {|order| order.confirmed==true}
+	end
+
 end

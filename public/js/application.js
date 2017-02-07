@@ -76,8 +76,27 @@ $("div.nav").on("click", "input#login-button", function(event) {
 
 });
 
+$("div.order-row").on("click", "select", function(event){
+  event.preventDefault;
+  var data = $(this).serialize()
+  $.ajax({
+    url: '/orders',
+    type: 'POST',
+    data: data
+  }).done(function(response){
+    var orderDetails =JSON.parse(response)
+    console.log("delivery_cost: $" + orderDetails.delivery_cost)
+    $("label.subtotal").html("subtotal: $" + orderDetails.subtotal)
+    $("label.delivery").html("delivery: $" + orderDetails.delivery_cost)
+    $("label.tax").html("tax: $" + orderDetails.tax)
+    $("label.total").html("total: $" + orderDetails.total)
 
-
-
+  });
+});
 
 });
+
+
+
+
+// });

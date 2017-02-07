@@ -25,10 +25,22 @@
 		self.subtotal + self.delivery_cost + self.tax
 	end
 
-	def add(donut_array) 
-		price = Menuitem.find_by(item_type: donut_array[0]).price
-		donut_array[1].to_i.times do 
-			Donut.create(donut_type: donut_array[0], price: price, order_id: self.id)
+	#input comes from orders view's form. ex:{"glazed":"1","pistachio":"0"}
+	def add(donut_hash)
+		donut_hash.each do |type_quantity_array|  
+			type 		 = type_quantity_array[0]
+			quantity = type_quantity_array[1].to_i
+			price = Menuitem.find_by_item_type(type).price
+
+			quantity.times do 
+				Donut.create(
+					donut_type: type,
+					price: price, 
+					order_id: self.id
+				)
+			end
 		end
 	end
+
+	
 end
