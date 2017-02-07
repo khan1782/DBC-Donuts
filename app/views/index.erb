@@ -3,7 +3,7 @@
 	<h1 id='main-page-title'>DBC Donut Ordering</h1>
 	<a href="/donutshop/<%= @current_donutshop.id %>/menuitems"> This week's Menu</a>
 	<% if logged_in? %>
-		<a href="/orders">Order now</a>
+		<a href="/orders/new">Order now</a>
 	<% end %>
 
 	<h2>Deadline for next order: <%=standard_datetime(@current_wholesale.deadline)%></h2>
