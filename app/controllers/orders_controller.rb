@@ -14,14 +14,28 @@ post '/orders' do
 		confirmed: false
 		)
 	current_order.add(params[:donut])
-	if request.xhr?
 		{
 			id: 					 current_order.id.to_s, 
 			subtotal: 		 money(current_order.subtotal),
 			delivery_cost: money(current_order.delivery_cost),
 			tax: 					 money(current_order.tax),
 			total: 				 money(current_order.total),
-			user:  				 "Kevin"#current_user.first_name
+			# user:  				 "Kevin"#current_user.first_name
 			}.to_json
-	end
 end
+
+get '/orders/:order_id' do
+	current_order = Order.find_by_id(params[:order_id])
+	{
+			id: 					 current_order.id.to_s, 
+			subtotal: 		 money(current_order.subtotal),
+			delivery_cost: money(current_order.delivery_cost),
+			tax: 					 money(current_order.tax),
+			total: 				 money(current_order.total),
+			user:  				 "Kevin"#current_user.first_name
+	}.to_json
+end
+
+put '/orders/:order_id' do 
+end
+  

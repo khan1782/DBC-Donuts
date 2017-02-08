@@ -13,6 +13,7 @@
 <div class='container order-section'>
 	<h1><%= @current_donutshop.name %></h1>
 			<form id='order-form' action="/orders" method="post">
+			<input class='id' type="hidden" value="" name="id">
 				<%@current_donutshop.menuitems.each do |item| %>
 				<div class="order-row">
 					<label>$<%=money(item.price)%></label>   <span><%= item.item_type %></span>
@@ -49,7 +50,7 @@
   <h4 class="total">total: </h4>
   <form action="/orders" method="post">
     	<input type="hidden" name="_method" value="put">
-    	<input type="submit" value="confirm">
+    	<input class='order-confirmation' type="submit" value="confirm">
   </form>
 
 </div>

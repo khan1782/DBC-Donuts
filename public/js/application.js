@@ -87,21 +87,16 @@ $("div.order-row").on("click", "select", function(event){
     $("label.delivery").html("delivery: $" + orderDetails.delivery_cost)
     $("label.tax").html("tax: $" + orderDetails.tax)
     $("label.total").html("total: $" + orderDetails.total)
-    $("div.confirmation-section").find("li.delivery-cost").append(orderDetails.delivery_cost);
-    $("div.confirmation-section").find("li.subtotal").append(orderDetails.subtotal);
-    $("div.confirmation-section").find("li.tax").append(orderDetails.tax);
-    $("div.confirmation-section").find(".total").append(orderDetails.total);
-    $("div.confirmation-section").find(".order-maker").append(orderDetails.user + "'s Order");
+    $("div.order-section").find("input.id").val(orderDetails.id)
+
+
   });
 });
 
 //click on the order button on home page
 $(".index-links").on("click", "#order-button", function(event){
   event.preventDefault();
-  
   $("div.order-section").slideDown();
-
-
 });
 
 
@@ -111,8 +106,29 @@ $(".order-section").on("click","#submit-unconfirmed",function(event){
   console.log("AD")
   $("div.order-section").slideUp()
   $("div.confirmation-section").slideDown();
-
+  // var data = $("form#order-form").serialize() 
+  var id = $(this).siblings("input.id").val()
+  $.ajax({
+    url:"/orders/" + id,
+    type:"GET",
+  }).done(function(response){
+    var orderDetails =JSON.parse(response)
+    $("div.confirmation-section").find("li.delivery-cost").append(orderDetails.delivery_cost);
+    $("div.confirmation-section").find("li.subtotal").append(orderDetails.subtotal);
+    $("div.confirmation-section").find("li.tax").append(orderDetails.tax);
+    $("div.confirmation-section").find(".total").append(orderDetails.total);
+    $("div.confirmation-section").find(".order-maker").append(orderDetails.user + "'s Order");
+  });
 });
+
+$("div.confirmation-section").on("click","input.order-confirmation", function(event){
+  event.preventDefault();
+  var url = 
+  $.ajax({
+    url:
+  })
+});
+
 
 
 });
