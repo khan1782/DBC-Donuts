@@ -65,12 +65,20 @@ $("div.login-section").on("click", "input.login-button", function(event) {
     $("div.nav-section").children("a.logout").show()
     $("div.nav-section").children("a.register").css("display","none")
     $("div.nav-section").children("a.login").css("display","none")
+    $("div.banner-section").children("a#order-button").show()
   }).fail(function(error){
     //put what happens when they are not authorized
   });
 
 
 });
+
+//click on the order button on home page
+$("div.banner-section").on("click", "a#order-button", function(event){
+  event.preventDefault();
+  $("div.order-section").slideDown();
+});
+
 
 // click on the order row for donut order form
 $("div.order-row").on("click", "select", function(event){
@@ -90,11 +98,6 @@ $("div.order-row").on("click", "select", function(event){
   });
 });
 
-//click on the order button on home page
-$(".index-links").on("click", "#order-button", function(event){
-  event.preventDefault();
-  $("div.order-section").slideDown();
-});
 
 
 //click on the submit button of the order form 

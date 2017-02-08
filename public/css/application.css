@@ -50,7 +50,7 @@ div.login-section {
 }
 
 a#order-button {
-  display:hidden;
+  display:none;
 }
 /*
 section.login-nav {
