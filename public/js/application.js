@@ -28,7 +28,7 @@ $("section.login-nav").on("click","form.new-user-form input[type=submit]", funct
 	}).done(function(response){
     $("section.login-nav").append(response);
     $("a#login").hide();
-    $("span.index-links").append("<a href='/orders/new'>Order now</a>");
+    $("span.index-links").append("<a id='order-button' href='/orders/new'>Order now</a>");
   });
 	$(".registration").remove();
 });
@@ -36,19 +36,16 @@ $("section.login-nav").on("click","form.new-user-form input[type=submit]", funct
 //on click of logout button that was added after registration
 $("section.login-nav").on("click","a#logout", function(event){
   event.preventDefault()
-
   $.ajax({
     url: '/sessions',
     type: "DELETE"
   })
-
   $("section.dynamic-login-nav").remove()
 });
 
 //on click of login button
 $("section.login-nav").on("click","a#login", function(event){
   event.preventDefault();
-
   $.ajax({
     url: '/sessions/new',
     type: 'GET'
@@ -56,8 +53,6 @@ $("section.login-nav").on("click","a#login", function(event){
       $("div.nav").append(response);
       // $("a#login").remove()
   });
-
-
 });
 
 
@@ -73,12 +68,12 @@ $("div.nav").on("click", "input#login-button", function(event) {
   }).done(function(response){
     $("a#login").hide()
   	$("section.login-nav").append(response);
-    $("span.index-links").append("<a href='/orders/new'>Order now</a>");
+    $("span.index-links").append("<a id='order-button' href='/orders/new'>Order now</a>");
   });
   $("container.login").remove();
-
 });
 
+// click on the order row for donut order form
 $("div.order-row").on("click", "select", function(event){
   event.preventDefault;
   var data = $(this).serialize()
@@ -88,17 +83,47 @@ $("div.order-row").on("click", "select", function(event){
     data: data
   }).done(function(response){
     var orderDetails =JSON.parse(response)
-    console.log("delivery_cost: $" + orderDetails.delivery_cost)
     $("label.subtotal").html("subtotal: $" + orderDetails.subtotal)
     $("label.delivery").html("delivery: $" + orderDetails.delivery_cost)
     $("label.tax").html("tax: $" + orderDetails.tax)
     $("label.total").html("total: $" + orderDetails.total)
-
+    $("div.confirmation-section").find("li.delivery-cost").append(orderDetails.delivery_cost);
+    $("div.confirmation-section").find("li.subtotal").append(orderDetails.subtotal);
+    $("div.confirmation-section").find("li.tax").append(orderDetails.tax);
+    $("div.confirmation-section").find(".total").append(orderDetails.total);
+    $("div.confirmation-section").find(".order-maker").append(orderDetails.user + "'s Order");
   });
 });
 
+//click on the order button on home page
+$(".index-links").on("click", "#order-button", function(event){
+  event.preventDefault();
+  
+  $("div.order-section").slideDown();
+
+
 });
 
+
+//click on the submit button of the order form 
+$(".order-section").on("click","#submit-unconfirmed",function(event){
+  event.preventDefault()
+  console.log("AD")
+  $("div.order-section").slideUp()
+  $("div.confirmation-section").slideDown();
+
+});
+
+
+});
+
+var Order = function(id){
+  this.id = id
+  this.subtotal = null
+  this.delivery_cost = null
+  this.tax = null
+  this.total = null
+}
 
 
 

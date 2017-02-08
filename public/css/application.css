@@ -25,6 +25,13 @@ div.dynamic-login-nav {
   display: inline;
 }
 
+div.order-section {
+  display: none;
+}
+
+div.confirmation-section {
+  display: none;
+}
 /*
 section.login-nav {
     position: fixed;

@@ -14,28 +14,14 @@ post '/orders' do
 		confirmed: false
 		)
 	current_order.add(params[:donut])
-
-	 ############################
-	 puts "*" * `tput cols`.chomp.to_i
-	 puts ""
-	 puts ""
-	 puts "-" * (((`tput cols`.chomp.to_i)/2)-10) + "LOOK OVER HERE" + "-" * (((`tput cols`.chomp.to_i)/2)-10)
-	 puts ""
-	 p params
-	 puts ""
-	 puts "-" * `tput cols`.chomp.to_i
-	 puts ""
-	 puts ""
-	 puts "*" * `tput cols`.chomp.to_i
-	 ############################
-	 
-	 
 	if request.xhr?
 		{
+			id: 					 current_order.id.to_s, 
 			subtotal: 		 money(current_order.subtotal),
 			delivery_cost: money(current_order.delivery_cost),
 			tax: 					 money(current_order.tax),
-			total: 				 money(current_order.total)
+			total: 				 money(current_order.total),
+			user:  				 "Kevin"#current_user.first_name
 			}.to_json
 	end
 end
