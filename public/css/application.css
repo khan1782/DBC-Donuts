@@ -32,6 +32,26 @@ div.order-section {
 div.confirmation-section {
   display: none;
 }
+
+div.confirmed-section {
+  display: none;
+}
+
+div.nav-section > .profile {
+  display:none;
+}
+
+div.nav-section > .logout {
+  display:none;
+}
+
+div.login-section {
+  display:none;
+}
+
+a#order-button {
+  display:hidden;
+}
 /*
 section.login-nav {
     position: fixed;

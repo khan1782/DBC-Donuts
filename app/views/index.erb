@@ -1,14 +1,48 @@
+
+
+<div class='container nav-section'>
+
+  <a class='home' href='/'>home</a>
+
+	<a class='login' href="/sessions/new">login</a>
+
+  <a class='register' href="/users/new">register</a>
+
+ 	<a class='profile' href="/users/">profile</a>
+  
+ 	<a class='logout' href="/">logout</a>
+
+</div>
+
+<div class='container login-section'>
+<br>
+  <form class="login-form" method="post" action="/sessions">
+    <label>Email:</label><br>
+    <input class="email" type="email" name="user[email]" /><br>
+    <label>Password:</label><br>
+    <input class="password" type="password" name="user[password]" /><br>
+    <input class="login-button" type="submit" value="submit"/>
+  </form>
+</div>
+
+
+
+
 <div class="container banner-section">
 	<!-- Main Title -->
 	<h1 id='main-page-title'>DBC Donut Ordering</h1>
-	<span class='index-links'>
+
+	<h3>Deadline for next order: <%=standard_datetime(@current_wholesale.deadline)%></h3>
 	<a href="/donutshop/<%= @current_donutshop.id %>/menuitems"> This week's Menu</a>
-	<% if logged_in? %>
-		<a id="order-button" href="/orders/new">Order now</a>
-	<% end %>
-	</span>
-	<h2>Deadline for next order: <%=standard_datetime(@current_wholesale.deadline)%></h2>
+
+	<a id="order-button" href="/orders/new">Order now</a>
+
 </div>
+
+
+
+
+
 
 <div class='container order-section'>
 	<h1><%= @current_donutshop.name %></h1>
@@ -39,8 +73,14 @@
 		</form>	
 </div>
 
+
+
+
+
+
 <div class='container confirmation-section'>
 <h2>Confirm Your Order</h2>
+<h3 class='deadline'>Will be available: </h3>
 	<h4 class='order-maker'> </h4>
 	<ul style="list-style-type:none">
   <li class="delivery-cost">delivery: </li>
@@ -52,8 +92,21 @@
     	<input type="hidden" name="_method" value="put">
     	<input class='order-confirmation' type="submit" value="confirm">
   </form>
-
 </div>
+
+
+
+
+
+
+<div class='container confirmed-section'>
+	<h3>You're order has been confirmed!</h3>
+</div>
+
+
+
+
+
 
 <div class="container testimonial-section">
 							<!-- Iterating three testimonials -->

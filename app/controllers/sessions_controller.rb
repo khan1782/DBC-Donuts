@@ -1,7 +1,7 @@
 #login form
 get '/sessions/new' do
   if request.xhr?
-    erb :'partials/_loginform', layout: false
+    # erb :'partials/_loginform', layout: false
   else
     #full page with form
   end

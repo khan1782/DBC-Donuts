@@ -25,6 +25,7 @@ post '/orders' do
 end
 
 get '/orders/:order_id' do
+	current_wholesale = Wholesale.last
 	current_order = Order.find_by_id(params[:order_id])
 	{
 			id: 					 current_order.id.to_s, 
@@ -32,7 +33,9 @@ get '/orders/:order_id' do
 			delivery_cost: money(current_order.delivery_cost),
 			tax: 					 money(current_order.tax),
 			total: 				 money(current_order.total),
-			user:  				 "Kevin"#current_user.first_name
+			user:  				 "Kevin",#current_user.first_name,
+			deadline:  		 standard_datetime(current_wholesale.deadline)
+
 	}.to_json
 end
 
