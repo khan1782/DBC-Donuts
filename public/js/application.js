@@ -27,6 +27,11 @@ $("#nav-section").on("click",".admin", function(event) {
   $("#admin-section").slideToggle();
 });
 
+//profile click
+$("nav-section").on("click", ".profile", function(event) {
+  
+}
+
 
 //on click of submit of login form send post request and log person in
 $("#login-section").on("submit", "form.login-form", function(event) {
@@ -63,7 +68,7 @@ $("#order-section").on("click", ".drop-down", function(event){
     $("label#delivery").html("delivery: $" + orderDetails.delivery_cost)
     $("label#tax").html("tax: $" + orderDetails.tax)
     $("label#total").html("total: $" + orderDetails.total)
-    $("div.order-section").find("input.id").val(orderDetails.id)
+    $("#order-section").find("input.id").val(orderDetails.id)
   });
 });
 
@@ -76,25 +81,36 @@ $("#order-section").on("submit","form.order-form",function(event){
   $("#order-section").slideUp()
   $("#confirmation-section").slideDown();
   // var data = $("form#order-form").serialize() 
-  var id = $(this).siblings("input.id").val()
+  var id = $(this).find("input.id").val()
   $.ajax({
     url:"/orders/" + id,
     type:"GET",
   }).done(function(response){
     var orderDetails =JSON.parse(response)
-    console.log(orderDetails)
-    $("#confirmation-section").find("li.delivery-cost").append(orderDetails.delivery_cost);
-    $("#confirmation-section").find("li.subtotal").append(orderDetails.subtotal);
-    $("#confirmation-section").find("li.tax").append(orderDetails.tax);
-    $("#confirmation-section").find(".total").append(orderDetails.total);
-    $("#confirmation-section").find(".order-maker").append(orderDetails.user + "'s Order");
-    $("#confirmation-section").find(".deadline").append(orderDetails.deadline);
+    $("#confirmation-section").find("li.delivery-cost").html("Delivery: "+ orderDetails.delivery_cost);
+    $("#confirmation-section").find("li.subtotal").html("Subtotal " + orderDetails.subtotal);
+    $("#confirmation-section").find("li.tax").html("Tax: " + orderDetails.tax);
+    $("#confirmation-section").find(".total").html("Total: " + orderDetails.total);
+    $("#confirmation-section").find(".order-maker").html(orderDetails.user + "'s Order");
+    $("#confirmation-section").find(".deadline").html("Will be available: " + orderDetails.deadline);
   });
 });
 
 
+//confirm on confirmation page
+$("#confirmation-section").on("submit", "form.confirm-form", function(event) {
+  event.preventDefault();
+  $("#confirmation-section").slideUp();
+  $("#confirmed-section").slideDown();
+});
 
 
+
+//confirmed notice click
+$("#confirmed-section").on("click", function(event){
+  event.preventDefault();
+  $("#confirmed-section").slideToggle();
+});
 
 
 

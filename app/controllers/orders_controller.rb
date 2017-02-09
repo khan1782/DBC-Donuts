@@ -13,6 +13,7 @@ post '/orders' do
 		wholesale_id: current_wholesale.id,
 		confirmed: false
 		)
+
 	current_order.add(params[:donut])
 		{
 			id: 					 current_order.id.to_s, 
@@ -27,6 +28,7 @@ end
 get '/orders/:order_id' do
 	current_wholesale = Wholesale.last
 	current_order = Order.find_by_id(params[:order_id])
+
 	{
 			id: 					 current_order.id.to_s, 
 			subtotal: 		 money(current_order.subtotal),
