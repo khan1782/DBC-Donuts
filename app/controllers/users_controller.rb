@@ -1,25 +1,20 @@
 
 #form for creating new user, accessed via register button click
 get '/users/new' do
-  if request.xhr?
-  	erb :'partials/_registrationform', layout: false
-  else
-  	#will include erb for independent registration form
-  	"NO AJAX REQUEST MADE"
-  end
+
 end
 
 #post for creating new user, made through registration button submission
 post '/users' do
-  @new_user = User.new(params[:user])
-  if @new_user.save
-    session[:user_id] = @new_user.id
-    if request.xhr?
-      erb :'partials/_loggedinbuttons', layout: false
+# {"user"=>{"first_name"=>"1", "last_name"=>"1", "email"=>"1@asd", "password"=>"1"}, "confirm_password"=>"1"}
+  new_user = User.new(params[:user])
+    if new_user.save
+      session[:user_id] = new_user.id
+      status 200
+      {name: new_user.first_name, id:new_user.id}.to_json
     else
-      redirect '/'
+      status 420
     end
-  end
 end
 
 

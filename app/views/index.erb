@@ -13,16 +13,16 @@
 
 <!-- nav bar with links -->
 <div id="nav-section" class='main-container'>
-<br>
-
+  <header>
   <!-- <a class='home'>     home     </a> -->
-	<a class='login'>    login    </a>
-  <a class='register'> register </a>
-  <a class='menu'>     menu     </a>
-  <a name = "" class='profile'>  profile  </a>
-  <a class='order'>    order    </a>
-  <a class='admin'>    admin    </a>
-  <a class='logout'>   logout   </a>
+  	<a class='login'>    login    </a>
+    <a class='register'> register </a>
+    <a class='menu'>     menu     </a>
+    <a id='user-id' name = "" class='profile'>  profile  </a>
+    <a class='order'>    order    </a>
+    <a class='admin'>    admin    </a>
+    <a class='logout'>   logout   </a>
+  </header>
 </div>
 
 <!-- Admin  -->
@@ -83,22 +83,24 @@
 	<form class='order-form' action="/orders" method="post">
 	  <input class='id' type="hidden" value="" name="id">
       <table width="80%">
-    <%@current_donutshop.menuitems.each do |item| %>
-      <div class="order-row">
-			 <tr>
-       <td><label>$<%=money(item.price)%> <%= item.item_type %></label>   </td>
-				<td><select class='drop-down' form='order-form' name="donut[<%=item.item_type%>]">
-					<option value="0">   </option>  
-					<option style='color:black' value="1"> 1 </option>
-					<option style='color:black' value="2"> 2 </option>
-					<option style='color:black' value="3"> 3 </option>
-					<option style='color:black' value="4"> 4 </option>
-					<option style='color:black' value="5"> 5 </option>
-				</select></td>
-      </tr>
-      </div>
-    <% end %>
-        </table>
+        <%@current_donutshop.menuitems.each do |item| %>
+          <div class="order-row">
+  			 <tr>
+           <td><label>$<%=money(item.price)%> . . . . . . . . . . . . .<%= item.item_type %></label>   </td>
+    				<td>
+              <select class='drop-down' form='order-form' name="donut[<%=item.item_type%>]">
+      					<option value="0">   </option>  
+      					<option style='color:black' value="1"> 1 </option>
+      					<option style='color:black' value="2"> 2 </option>
+      					<option style='color:black' value="3"> 3 </option>
+      					<option style='color:black' value="4"> 4 </option>
+      					<option style='color:black' value="5"> 5 </option>
+      				</select>
+            </td>
+          </tr>
+          </div>
+        <% end %>
+      </table>
 		<div>
   		<br>
   		<label id='subtotal'> subtotal: $0.00   </label>
@@ -115,12 +117,12 @@
 <div id="confirmation-section" class='container'>
   <h2>Confirm Your Order</h2>
   <h3 class='deadline'>Will be available: </h3>
-	<h4 class='order-maker'> </h4>
+	<h4 class='order-maker'>Your Order </h4>
 	<ul>
-    <li class="delivery-cost">  delivery: </li>
     <li class="subtotal">       subtotal: </li>
     <li class="tax">            tax:      </li>
-  </ul>	
+    <li class="delivery-cost">  delivery: </li>
+  </ul> 
   <h4 class="total">total: </h4>
   <form class="confirm-form" action="/orders" method="post">
   	<input type="hidden" name="_method" value="put">
@@ -131,6 +133,7 @@
 <!-- Confirmed Notice -->
 <div id="confirmed-section" class='container'>
 	<h3>You're order has been confirmed!</h3>
+  <h2>Expect your 
 </div>
 
 <!-- Profile -->
@@ -145,7 +148,7 @@
 
 
 <div id="stop-section" class='container'>
-  <h2>.NOT AUTHORIZED</h2>
+  <h2>INVALID LOGIN</h2>
 </div>
 
 
