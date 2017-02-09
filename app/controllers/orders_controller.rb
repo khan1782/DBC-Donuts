@@ -5,8 +5,6 @@ end
 
 
 post '/orders' do 
-	session[:user_id] = rand(999999999)
-	# @current_donutshop = Donutshop.find_by_current_shop("true")
 	current_wholesale = Wholesale.last
 	current_order =	Order.find_or_create_by(
 		user_id: session[:user_id],

@@ -1,0 +1,10 @@
+<h2>Recent Orders for <%= @user.first_name %></h2>
+<% @user.orders.each do |order|%>
+<h3><%= standard_datetime(order.created_at)%></h3>
+<ul>
+	<li class='order-title'><%= order.wholesale.donutshop.name %></li>
+	<% order.donuts.each do |donut| %>
+	<li><%= donut.donut_type %></li>
+	<% end %>
+</ul>
+<% end %>

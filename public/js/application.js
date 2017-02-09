@@ -1,4 +1,7 @@
+var user = {};
+
 $(document).ready(function() {
+
 
   $("#nav-section").children().css('cursor','pointer')
   $("#confirmed-section").css('cursor','pointer')
@@ -33,11 +36,13 @@ $(document).ready(function() {
 
   //nav-section profile click
   $("#nav-section").on("click", ".profile", function(event) {
-      $("#profile-section").slideToggle(); 
+    requestProfile($("#user-id").attr("name"))
+    $("#profile-section").slideToggle();
   });
 
   //nav-section logout click
   $("#nav-section").on("click", ".logout", function(event){
+    logoutSubmit()
     logoutNavOff()
   });
 
@@ -48,6 +53,7 @@ $(document).ready(function() {
 $("#login-section").on("submit", "form.login-form", function(event) {
   event.preventDefault();
   loginFormSubmit();
+  $("#login-section").slideUp();
 });
 
 
@@ -57,6 +63,8 @@ $("#login-section").on("submit", "form.login-form", function(event) {
 $("#registration-section").on("submit", "form.registration-form", function(event){
   event.preventDefault();
   registrationFormSubmit();
+  $("#registration-section").slideUp();
+
 });
 
 

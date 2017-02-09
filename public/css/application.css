@@ -187,3 +187,11 @@ select.drop-down {
 input {
   color:black;
 }
+
+li.order-title {
+    font-size: large;
+    font-weight: 700;
+    margin-left: -30px;
+    margin-bottom: 6px;
+    margin-top: -10px;
+}

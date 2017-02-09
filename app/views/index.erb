@@ -137,26 +137,21 @@
 </div>
 
 <!-- Profile -->
-
 <div id="profile-section" class='container'>
-  <h3>Recent Orders</h3>
 
+    
 </div>
 
-<!--  -->
-
-
-
+<!-- Error -->
 <div id="stop-section" class='container'>
   <h2>INVALID LOGIN</h2>
 </div>
 
 
 
-
 <!-- Testimonials -->
 <div id="testimonial-section" class="main-container">
-  <h2>Testimonials</h2>
+  <h3>Testimonials</h3>
   <% @sample_testimonials.each do |review| %>
 	 <p>"<%= review.body%>" -<%=review.author%>, <%=standard_datetime(review.created_at)%></p>
   <% end %>

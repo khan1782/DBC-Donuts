@@ -4,6 +4,7 @@
 	has_one :testimonial
 	belongs_to :wholesale
 
+
 	validates_uniqueness_of :user_id, scope: :wholesale_id, :message => "Cannot have more than one order per person. Please edit existing order." 
 
 

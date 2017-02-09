@@ -1,3 +1,22 @@
+
+requestProfile = function(userId) {
+  $.ajax({
+    url: '/users/' + userId,
+    type: 'GET'
+  }).done(function(response){
+    $("#profile-section").html(response);
+  });
+};
+
+var logoutSubmit = function() {
+  $.ajax({
+    url: '/sessions',
+    type: 'DELETE'
+  });
+};
+
+
+
 var loginFormSubmit = function() {
   var data = $("form.login-form").serialize();
   $.ajax({
@@ -8,7 +27,7 @@ var loginFormSubmit = function() {
     var userInfo = JSON.parse(response)
     loginNavOn();
     updateProfileTag(userInfo);
-    $("#login-section").slideUp();
+
   }).fail(function(error){
     $("#login-section").slideUp();
     $("#stop-section").slideDown();
@@ -20,13 +39,12 @@ var registrationFormSubmit = function() {
   console.log(data)
   $.ajax({
     url:'/users',
-    type:'post',
+    type:'POST',
     data: data
   }).done(function(response){
     var userInfo = JSON.parse(response)
     loginNavOn();
     updateProfileTag(userInfo);
-    $("#registration-section").slideUp();
   }).fail(function(error){
 
   });
@@ -100,7 +118,7 @@ var logoutNavOff = function(){
   $("#nav-section .register").slideDown();
 };
 
-var userId = $("#user-id").attr("name")
+
 
 var updateProfileTag = function(userHash) {
   $("#nav-section .profile").text(userHash.name);

@@ -19,8 +19,10 @@ end
 
 
 
-get '/users/:id' do
 #user's profile page.
-  @user = User.find_by_id(params[:id])
-  erb :'users/show'
+get '/users/:user_id' do
+  @user = User.find_by_id(params[:user_id])
+  @wholesale = Wholesale.last
+  erb :'/users/show'
 end
+
