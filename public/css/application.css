@@ -1,6 +1,5 @@
 * {
   color:white;
-
 }
 
 
@@ -15,9 +14,9 @@
     border-bottom-right-radius: 25px;
     border-bottom-left-radius: 5px;
     border-top-right-radius: 10px;
-    background-color: teal;
+    background-color: black;
     color: black;
-  opacity: 0.5;
+  opacity: 0.4;
 }
 .main-container {
   margin: 20px auto;
@@ -29,10 +28,14 @@
   border-radius: 8px
 
 }
+
 #menu-section {
   display: none;
 }
 
+#profile-section{
+  display: none;
+}
 
 /*main sections*/
 #admin-section {
@@ -40,38 +43,76 @@
 }
 #nav-section {
     background-color: black;
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 #banner-section {
-    background-color: black;
-    opacity: 0.3;
+    background-color: teal;
+    opacity: 0.6;
     /*position: fixed;*/
 
 }
 #logo-section {
-  background-image: url("donuts.png");
+/*  background-image: url("donutRotate.gif");
   background-repeat: no-repeat;
   background-position: center;
   padding-top: 140px;
   border: none;
+  background-size: contain;*/
   /*position: fixed;*/
 }
 /*  ------    */
+#stop-section {
+  display: none;
+  background: url('stop.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 80px;
+  padding-bottom: 200px;
+  border: none;
+  opacity: 1.0;
+  text-align: center;
 
+}
 
 /*Nav Buttons*/
 #nav-section > .profile {
-  /*display:none;*/
+  display:none;
 }
 #nav-section > .logout {
-  /*display:none;*/
+  display:none;
 }
-/*  ------    */
-
+#nav-section > .order {
+  display:none;
+}
+#nav-section > .admin {
+  display:none;
+}
 #nav-section > a {
-  margin-left: 30px;
+  margin-left: 45px;
 }
+
+/* ------  */
+
+
+#banner-section > header {
+  display: inline-block;
+}
+
+#banner-section > img {
+    border: 0;
+    display: inline-block;
+    float: right;
+    height: 130px;
+    padding-right: 80px;
+    padding-bottom: 20px
+}
+
+
+
+
+
+
 
 /* Login & Registration Forms*/
 #registration-section {
@@ -113,8 +154,8 @@
 
 
 #testimonial-section {
-    background-color: black;
-  opacity: 0.3;
+    background-color: teal;
+  opacity: 0.6;
 }
 /*General Stylings*/
 ul {
@@ -131,3 +172,10 @@ body {
 
 
 
+select.drop-down {
+    color: black;
+}
+
+input.order-confirmation {
+  color:black;
+}

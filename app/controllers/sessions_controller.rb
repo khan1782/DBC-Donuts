@@ -1,27 +1,12 @@
-#login form
-get '/sessions/new' do
-  if request.xhr?
-    # erb :'partials/_loginform', layout: false
-  else
-    #full page with form
-  end
-end
-
 #for creating new session on login form
 post '/sessions' do
-  if request.xhr?
-     
-    @new_user = User.authenticate(params[:user])
-    if @new_user
-      session[:user_id] = @new_user.id
-      erb :'partials/_loggedinbuttons', layout: false
-    else
-      "NOT AUTHORIZED"
-      # @error = "Username or password doesn't match existing account information"
-      # erb :'sessions/new'
-    end
+  user = User.authenticate(params[:user])
+  if user
+    status 200
+    session[:user_id] = user.id
+    {name: user.first_name, id:user.id}.to_json
   else
-  "not ajaxed"
+    status 422
   end
 end
 
