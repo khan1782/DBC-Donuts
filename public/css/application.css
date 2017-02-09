@@ -1,71 +1,133 @@
+* {
+  color:white;
+
+}
+
+
+/*Container Styling*/
 .container {
   margin: 20px auto;
   width: 600px;
+  padding: 0px 10px 10px 10px;
+    border: 1px solid lightgrey;
+  font-family: Georgia, Serif;
+  margin-top: -20px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 10px;
+    background-color: teal;
+    color: black;
+  opacity: 0.5;
+}
+.main-container {
+  margin: 20px auto;
+  width: 700px;
   padding: 0px 20px 20px 20px;
-  border: 1px dotted black;
-}
-th {
-  text-align: left;
-}
+  border: 1px dotted grey;
+  font-family: Georgia, Serif;
 
-input#logout-button {
-  background-color: transparent;
-  border: transparent;
-  color: blue;
-    /* font-style: inherit; */
-  text-decoration: underline;
-    /* display: flex; */
-}
+  border-radius: 8px
 
-form#logout {
-  display: inline;
 }
-
-div.dynamic-login-nav {
-  display: inline;
-}
-
-div.order-section {
+#menu-section {
   display: none;
 }
 
-div.confirmation-section {
+
+/*main sections*/
+#admin-section {
   display: none;
 }
+#nav-section {
+    background-color: black;
+    opacity: 0.5;
+}
 
-div.confirmed-section {
+#banner-section {
+    background-color: black;
+    opacity: 0.3;
+    /*position: fixed;*/
+
+}
+#logo-section {
+  background-image: url("donuts.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  padding-top: 140px;
+  border: none;
+  /*position: fixed;*/
+}
+/*  ------    */
+
+
+/*Nav Buttons*/
+#nav-section > .profile {
+  /*display:none;*/
+}
+#nav-section > .logout {
+  /*display:none;*/
+}
+/*  ------    */
+
+#nav-section > a {
+  margin-left: 30px;
+}
+
+/* Login & Registration Forms*/
+#registration-section {
   display: none;
 }
-
-div.nav-section > .profile {
+#login-section {
   display:none;
 }
+/*  ------    */
 
-div.nav-section > .logout {
+
+/*Order Forms*/
+#order-section {
+  display: none;
+}
+#confirmation-section {
+  display: none;
+}
+#confirmed-section {
+  display: none;
+}
+/*  ------    */
+
+
+
+/*Order Now Button*/
+#order-button {
   display:none;
 }
+/*  ------    */
 
-div.login-section {
-  display:none;
+
+/*Admin*/
+#admin-section{
+
+}
+/*  ------    */
+
+
+
+#testimonial-section {
+    background-color: black;
+  opacity: 0.3;
+}
+/*General Stylings*/
+ul {
+  list-style-type:none;
+}
+a {
+  color: white;
+}
+body {
+    background: url('restaurant_icons.png');
+    background-repeat: repeat;
 }
 
-a#order-button {
-  display:none;
-}
-/*
-section.login-nav {
-    position: fixed;
-    top: 50px;
-    right: 50px;
-    width: 420px;
-    border: 2px solid black;
-    padding: 10px;
-}
 
 
-section.main-page-links {
-  position: fixed;
-  top: 200px;
-  left: 100px;
-  width: 300px;
-}*/
+

@@ -1,116 +1,144 @@
 
 
-<div class='container nav-section'>
 
-  <a class='home' href='/'>home</a>
+<!-- Main Title -->
+<div id="banner-section" class="main-container">
+  <h1 id='main-page-title'>DBC Donut Ordering</h1>
+  <h3>Deadline for next order: <%=standard_datetime(@current_wholesale.deadline)%></h3>
+</div>
+<!-- Logo -->
+<div id='logo-section' class='main-container'>
 
-	<a class='login' href="/sessions/new">login</a>
+</div>
+<!--  -->
 
-  <a class='register' href="/users/new">register</a>
+<!-- nav bar with links -->
+<div id="nav-section" class='main-container'>
+<br>
 
- 	<a class='profile' href="/users/">profile</a>
-  
- 	<a class='logout' href="/">logout</a>
+  <!-- <a class='home'>     home     </a> -->
+	<a class='login'>    login    </a>
+  <a class='register'> register </a>
+  <a class='menu'>     menu     </a>
+  <a class='profile'>  profile  </a>
+  <a class='logout'>   logout   </a>
+  <a class='order'>    order    </a>
+  <a class='admin'>    admin    </a>
+</div>
+
+<!-- Admin  -->
+<div id='admin-section' class='container'>
+  <h2>Current Wholesale Order</h2>
+  <a class='wholesale'>New Wholesale Order</a>
 
 </div>
 
-<div class='container login-section'>
+<!-- Form for logging in -->
+<div id='login-section' class='container'>
 <br>
   <form class="login-form" method="post" action="/sessions">
+    <label>Email:</label><br>
+    <input style='color:black' class="email"        type="email" name="user[email]" /><br>
+    <label>Password:</label><br>
+    <input style='color:black'  class="password"     type="password" name="user[password]" /><br>
+  <br>
+
+    <input style='color:black' class="login-button" type="submit" value="submit"/>
+  </form>
+</div>
+
+<!-- Form for registration -->
+<div id="registration-section" class='container'>
+<br>
+  <form class="registration-form" method="post" action="/users">
+    <label>First Name:</label><br>
+    <input class="first-name" type="text" name="user[first_name]" /><br>
+    <label>Last Name:</label><br>
+    <input class="last-name" type="text" name="user[last_name]" /><br>
     <label>Email:</label><br>
     <input class="email" type="email" name="user[email]" /><br>
     <label>Password:</label><br>
     <input class="password" type="password" name="user[password]" /><br>
-    <input class="login-button" type="submit" value="submit"/>
+    <label>Confirm Password:</label><br>
+    <input class="confirm-password" type="password" name="confirm_password" /><br><br>
+    <input type="submit" value="submit"/>
   </form>
 </div>
 
-
-
-
-<div class="container banner-section">
-	<!-- Main Title -->
-	<h1 id='main-page-title'>DBC Donut Ordering</h1>
-
-	<h3>Deadline for next order: <%=standard_datetime(@current_wholesale.deadline)%></h3>
-	<a href="/donutshop/<%= @current_donutshop.id %>/menuitems"> This week's Menu</a>
-
-	<a id="order-button" href="/orders/new">Order now</a>
-
+<!-- Menu Items Listed -->
+<div id='menu-section' class='container'>
+  <span> 
+    <h1><%= @current_donutshop.name %></h1>
+    <%@current_donutshop.menuitems.each do |item| %>
+      <p>$<%= money(item.price) %>   . . . . . . . . . .  . . <%= item.item_type %>  </p>
+    <% end %>
+  </span>
+  <br>
 </div>
 
 
+<!-- -->
 
-
-
-
-<div class='container order-section'>
+<!-- Form for ordering donuts -->
+<div id="order-section" class='container'>
 	<h1><%= @current_donutshop.name %></h1>
-			<form id='order-form' action="/orders" method="post">
-			<input class='id' type="hidden" value="" name="id">
-				<%@current_donutshop.menuitems.each do |item| %>
-				<div class="order-row">
-					<label>$<%=money(item.price)%></label>   <span><%= item.item_type %></span>
-  						<select class='drop-down' form='order-form' name="donut[<%=item.item_type%>]">
-  							<option value="0"></option>  						
-  							<option value="1">1</option>
-  							<option value="2">2</option>
-  							<option value="3">3</option>
-  							<option value="4">4</option>
-  							<option value="5">5</option>
-  						</select>
-  			</div>
-			<% end %>
-  			<div>
-  			<br>
-  			<label class='subtotal'>subtotal: $0.00</label>
-  			<label class='tax'>tax: $0.00</label>
-  			<label class='delivery'>delivery: $0.00</label><br><br>
-  			<label class='total'>total: $0.00</label>
-  			</div>
-  			<br>
-  			<input id="submit-unconfirmed" type="submit" value="submit">
-		</form>	
+	<form class='order-form' action="/orders" method="post">
+	  <input class='id' type="hidden" value="" name="id">
+      <table width="80%">
+    <%@current_donutshop.menuitems.each do |item| %>
+      <div class="order-row">
+			 <tr>
+       <td><label>$<%=money(item.price)%> <%= item.item_type %></label>   </td>
+				<td><select class='drop-down' form='order-form' name="donut[<%=item.item_type%>]">
+					<option value="0">   </option>  
+					<option style='color:black' value="1"> 1 </option>
+					<option style='color:black' value="2"> 2 </option>
+					<option style='color:black' value="3"> 3 </option>
+					<option style='color:black' value="4"> 4 </option>
+					<option style='color:black' value="5"> 5 </option>
+				</select></td>
+      </tr>
+      </div>
+    <% end %>
+        </table>
+		<div>
+  		<br>
+  		<label id='subtotal'> subtotal: $0.00   </label>
+  		<label id='tax'>      tax: $0.00        </label>
+  		<label id='delivery'> delivery: $0.00   </label><br><br>
+  		<label id='total'>    total: $0.00      </label>
+		</div>
+		<br>
+		<input style='color:black' id="submit-unconfirmed" type="submit" value="submit">
+  </form>	
 </div>
 
-
-
-
-
-
-<div class='container confirmation-section'>
-<h2>Confirm Your Order</h2>
-<h3 class='deadline'>Will be available: </h3>
+<!-- Order Confirmation -->
+<div id="confirmation-section" class='container'>
+  <h2>Confirm Your Order</h2>
+  <h3 class='deadline'>Will be available: </h3>
 	<h4 class='order-maker'> </h4>
-	<ul style="list-style-type:none">
-  <li class="delivery-cost">delivery: </li>
-  <li class="subtotal">subtotal: </li>
-  <li class="tax">tax: </li>
-</ul>	
+	<ul>
+    <li class="delivery-cost">  delivery: </li>
+    <li class="subtotal">       subtotal: </li>
+    <li class="tax">            tax:      </li>
+  </ul>	
   <h4 class="total">total: </h4>
   <form action="/orders" method="post">
-    	<input type="hidden" name="_method" value="put">
-    	<input class='order-confirmation' type="submit" value="confirm">
+  	<input type="hidden" name="_method" value="put">
+  	<input class='order-confirmation' type="submit" value="confirm">
   </form>
 </div>
 
-
-
-
-
-
-<div class='container confirmed-section'>
+<!-- Confirmed Notice -->
+<div id="confirmed-section" class='container'>
 	<h3>You're order has been confirmed!</h3>
 </div>
 
-
-
-
-
-
-<div class="container testimonial-section">
-							<!-- Iterating three testimonials -->
-<% @sample_testimonials.each do |review| %>
-	<p>"<%= review.body%>" -<%=review.author%>, <%=standard_datetime(review.created_at)%></p>
-<% end %>
+<!-- Testimonials -->
+<div id="testimonial-section" class="main-container">
+  <h2>Testimonials</h2>
+  <% @sample_testimonials.each do |review| %>
+	 <p>"<%= review.body%>" -<%=review.author%>, <%=standard_datetime(review.created_at)%></p>
+  <% end %>
 </div>
