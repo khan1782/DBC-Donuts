@@ -22,7 +22,17 @@ end
 #user's profile page.
 get '/users/:user_id' do
   @user = User.find_by_id(params[:user_id])
-  @wholesale = Wholesale.last
   erb :'/users/show'
 end
 
+
+post '/admins' do
+    new_user = User.new(params[:user])
+    if new_user.save
+      session[:user_id] = new_user.id
+      status 200
+      {name: new_user.first_name, id:new_user.id}.to_json
+    else
+      status 420
+    end
+end

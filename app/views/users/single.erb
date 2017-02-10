@@ -1,0 +1,10 @@
+<article>
+<h3><%= standard_datetime(@current_order.created_at)%></h3>
+<ul>
+	<li class='order-title'><%= @current_order.wholesale.donutshop.name %></li>
+	<% @current_order.donuts.each do |donut| %>
+	<li><%= donut.donut_type %></li>
+	<% end %>
+</ul>
+<% end %>
+</article>

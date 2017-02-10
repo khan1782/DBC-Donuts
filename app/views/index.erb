@@ -18,19 +18,47 @@
   	<a class='login'>    login    </a>
     <a class='register'> register </a>
     <a class='menu'>     menu     </a>
-    <a id='user-id' name = "" class='profile'>  profile  </a>
+    <a class='profile'>  profile  </a>
     <a class='order'>    order    </a>
     <a class='admin'>    admin    </a>
     <a class='logout'>   logout   </a>
+    <a class='currentshop'> <%= @current_donutshop.name %></a> 
   </header>
 </div>
 
 <!-- Admin  -->
 <div id='admin-section' class='container'>
-  <h2>Current Wholesale Order</h2>
-  <a class='wholesale'>New Wholesale Order</a>
+  <h2>Current Batch Order</h2>
+  <a class='wholesale'>Donut Shop</a>
+  <form class='wholesale-form'>
+    <input name="donutshop" list='donutshops'><br>
+    <datalist id='donutshops'>
+      <% Donutshop.all.each do |donutshoppe| %>
+      <option><%= donutshoppe.name %></option>
+    </datalist>
+    <% end %>
+    <br><br>
+    <a style='color:teal' id='newmenuitem'>New Menu Item</a><br><br>
+      
+      <div style='display:block' class='menuitem-input'>
+        <label>Type: </label>
+        <input class='menuitem' name='0[item_type]'>
+        <label>Price: </label>
+        <input type='number' name='0[price]'><br><br>
+      </div>  
+
+      <input type="submit" name="submit">
+  </form>
 
 </div>
+
+<div id="currentshop-section" class='container'>
+    <h1> Stans Donuts </h1>
+    <p> Where the magic happens baby </p>
+</div>
+
+
+
 
 <!-- Form for logging in -->
 <div id='login-section' class='container'>
@@ -40,6 +68,7 @@
     <input style='color:black' class="email"        type="email" name="user[email]" /><br>
     <label>Password:</label><br>
     <input style='color:black'  class="password"     type="password" name="user[password]" /><br>
+
   <br>
 
     <input style='color:black' class="login-button" type="submit" value="submit"/>
@@ -59,8 +88,11 @@
     <label>Password:</label><br>
     <input class="password" type="password" name="user[password]" /><br>
     <label>Confirm Password:</label><br>
-    <input class="confirm-password" type="password" name="confirm_password" /><br><br>
+    <input class="confirm-password" type="password" name="confirm_password" /><br><br><br>
+        <label>Cow Goes:</label><br>
+    <input style='color:black' class="admin" type='password' name='admin' ><br><br>
     <input type="submit" value="submit"/>
+
   </form>
 </div>
 
@@ -82,22 +114,22 @@
 	<h1><%= @current_donutshop.name %></h1>
 	<form class='order-form' action="/orders" method="post">
 	  <input class='id' type="hidden" value="" name="id">
-      <table width="80%">
+      <table id='order-form-table' width="80%">
         <%@current_donutshop.menuitems.each do |item| %>
           <div class="order-row">
-  			 <tr>
-           <td><label>$<%=money(item.price)%> . . . . . . . . . . . . .<%= item.item_type %></label>   </td>
-    				<td>
-              <select class='drop-down' form='order-form' name="donut[<%=item.item_type%>]">
-      					<option value="0">   </option>  
-      					<option style='color:black' value="1"> 1 </option>
-      					<option style='color:black' value="2"> 2 </option>
-      					<option style='color:black' value="3"> 3 </option>
-      					<option style='color:black' value="4"> 4 </option>
-      					<option style='color:black' value="5"> 5 </option>
-      				</select>
-            </td>
-          </tr>
+  			   <tr>
+            <td><label>$<%=money(item.price)%> . . . . . . . . . . . . .<%= item.item_type %></label>   </td>
+    				  <td>
+                <select class='drop-down' form='order-form' name="donut[<%=item.item_type%>]">
+        					<option value="0">   </option>  
+        					<option style='color:black' value="1"> 1 </option>
+        					<option style='color:black' value="2"> 2 </option>
+        					<option style='color:black' value="3"> 3 </option>
+        					<option style='color:black' value="4"> 4 </option>
+        					<option style='color:black' value="5"> 5 </option>
+        				</select>
+               </td>
+            </tr>
           </div>
         <% end %>
       </table>
@@ -138,8 +170,6 @@
 
 <!-- Profile -->
 <div id="profile-section" class='container'>
-
-    
 </div>
 
 <!-- Error -->

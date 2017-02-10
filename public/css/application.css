@@ -37,6 +37,10 @@
   display: none;
 }
 
+#currentshop-section{
+  display: none;
+}
+
 /*main sections*/
 #admin-section {
   display: none;
@@ -194,4 +198,16 @@ li.order-title {
     margin-left: -30px;
     margin-bottom: 6px;
     margin-top: -10px;
+}
+
+article > p {
+    margin: 0px;
+    margin-left: 10px;
+}
+
+input[type='number'] {
+    width: 80px;
+}
+.menuitem {
+  width: 200px;
 }

@@ -1,10 +1,18 @@
-
-requestProfile = function(userId) {
+requestProfile = function(userHash) {
   $.ajax({
-    url: '/users/' + userId,
+    url: '/users/' + userHash.id,
     type: 'GET'
   }).done(function(response){
     $("#profile-section").html(response);
+  });
+};
+
+updateProfile = function(orderId) { //$("input.id").val()
+  $.ajax({
+    url:'/orders/' + orderId,
+    type: 'GET'
+  }).done(function(response){
+    $("#profile-section").append(response);
   });
 };
 
@@ -14,7 +22,6 @@ var logoutSubmit = function() {
     type: 'DELETE'
   });
 };
-
 
 
 var loginFormSubmit = function() {
@@ -27,7 +34,8 @@ var loginFormSubmit = function() {
     var userInfo = JSON.parse(response)
     loginNavOn();
     updateProfileTag(userInfo);
-
+    $("#profile-section").html(userInfo.profile);
+    user.id = userInfo.id
   }).fail(function(error){
     $("#login-section").slideUp();
     $("#stop-section").slideDown();
@@ -36,18 +44,31 @@ var loginFormSubmit = function() {
 
 var registrationFormSubmit = function() {
   var data = $("form.registration-form").serialize()
-  console.log(data)
-  $.ajax({
-    url:'/users',
-    type:'POST',
-    data: data
-  }).done(function(response){
-    var userInfo = JSON.parse(response)
-    loginNavOn();
-    updateProfileTag(userInfo);
-  }).fail(function(error){
+  var admin = $("form.registration-form").serializeArray()[5].value
 
-  });
+  if (admin == "moooo") {
+    $.ajax({
+      url: '/admins',
+      type: 'POST',
+      data: data
+    }).done(function(response){
+      var userInfo = JSON.parse(response);
+      $("#nav-section .admin").slideDown();
+      loginNavOn();
+    });
+  } else {
+    $.ajax({
+      url:'/users',
+      type:'POST',
+      data: data
+    }).done(function(response){
+      var userInfo = JSON.parse(response)
+      loginNavOn();
+    }).fail(function(error){
+      $("#login-section").slideUp();
+      $("#stop-section").slideDown();
+    });
+  }
 };
 
 
@@ -60,6 +81,8 @@ var orderRowSelection = function(dropDownTag) {
   }).done(function(response){
     var orderDetails =JSON.parse(response)
     updateRunningTotal(orderDetails)
+  }).fail(function(error){
+
   });
 };
 
@@ -67,19 +90,33 @@ var orderRowSelection = function(dropDownTag) {
 var orderFormSubmit = function(formTag){
   $("#order-section").slideUp()
   $("#confirmation-section").slideDown();
-  // var data = $("form#order-form").serialize() 
   var id = $(formTag).find("input.id").val()
   $.ajax({
     url:"/orders/" + id,
-    type:"GET",
+    type:"PUT",
   }).done(function(response){
     var orderDetails =JSON.parse(response)
     updateConfirmed(orderDetails)
   }).fail(function(response){
 
   });
-}
+};
 
+var wholesaleFormSubmit = function(data){
+  $.ajax({
+    url: "/donutshop",
+    type: "POST",
+    data: data
+  }).done(function(response){
+    //update some list of donut shops somewhere
+    $("#order-form-table").append(response)
+  });
+};
+
+
+var confirmationSubmit = function(formTag){
+  updateProfile($("input.id").val())
+}
 
 var updateConfirmed = function(orderDetails) {
   var $confSection = $("#confirmation-section")
@@ -106,7 +143,6 @@ var loginNavOn = function(){
   $("#nav-section .profile").slideDown();
   $("#nav-section .logout").slideDown();
   $("#nav-section .order").slideDown();
-  $("#nav-section .admin").slideDown();
 };
 
 var logoutNavOff = function(){
@@ -122,5 +158,4 @@ var logoutNavOff = function(){
 
 var updateProfileTag = function(userHash) {
   $("#nav-section .profile").text(userHash.name);
-  $("#nav-section .profile").attr({"name":userHash.id});
 };

@@ -5,13 +5,9 @@ end
 
 
 post '/orders' do 
-	current_wholesale = Wholesale.last
-	current_order =	Order.find_or_create_by(
-		user_id: session[:user_id],
-		wholesale_id: current_wholesale.id,
-		confirmed: false
-		)
 
+	current_wholesale = Wholesale.last
+	current_order = Order.find_or_create_by(user_id:session[:user_id],wholesale_id:current_wholesale.id)
 	current_order.add(params[:donut])
 		{
 			id: 					 current_order.id.to_s, 
@@ -24,6 +20,11 @@ post '/orders' do
 end
 
 get '/orders/:order_id' do
+	@current_order = Order.find_by_id(params[:order_id])
+	erb :'/orders/single'
+end
+
+put '/orders/:order_id' do
 	current_wholesale = Wholesale.last
 	current_order = Order.find_by_id(params[:order_id])
 
@@ -36,9 +37,5 @@ get '/orders/:order_id' do
 			user:  				 "Kevin",#current_user.first_name,
 			deadline:  		 standard_datetime(current_wholesale.deadline)
 
-	}.to_json
+	}.to_json 
 end
-
-put '/orders/:order_id' do 
-end
-  

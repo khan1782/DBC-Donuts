@@ -1,9 +1,10 @@
 var user = {};
+var menuItemCount = 0
 
 $(document).ready(function() {
 
 
-  $("#nav-section").children().css('cursor','pointer')
+  $("a").css('cursor','pointer')
   $("#confirmed-section").css('cursor','pointer')
     $("#stop-section").css('cursor','pointer')
 
@@ -36,7 +37,6 @@ $(document).ready(function() {
 
   //nav-section profile click
   $("#nav-section").on("click", ".profile", function(event) {
-    requestProfile($("#user-id").attr("name"))
     $("#profile-section").slideToggle();
   });
 
@@ -44,6 +44,10 @@ $(document).ready(function() {
   $("#nav-section").on("click", ".logout", function(event){
     logoutSubmit()
     logoutNavOff()
+  });
+
+  $("#nav-section").on("click", ".currentshop", function(event){
+    $("#currentshop-section").slideToggle();
   });
 
 
@@ -131,7 +135,23 @@ $("#stop-section").on("click", function(event){
   $("#login-section").slideDown()
 });
 
-
+//new menu item form button click
+$("#admin-section").on("click", "#newmenuitem", function(event){
+  menuItemCount += 1
+  $(".menuitem-input").append("<label>Type: </label><input class='menuitem' name='" + menuItemCount.toString() + "[item_type]'> <label>Price: </label><input type='number' name='" + menuItemCount.toString() + "[price]'><br><br>")
 });
 
+//wholesale form submit click
+$("#admin-section").on("submit", "form.wholesale-form", function(event){
+  var data = $("form.wholesale-form").serialize();
+  event.preventDefault();
+  wholesaleFormSubmit(data);
+});
+
+
+
+
+
+
+});
 

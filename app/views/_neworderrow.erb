@@ -1,0 +1,15 @@
+<% @new_items.each do |item| %>
+	<tr>
+	  <td><label>$<%=money(item.price)%> . . . . . . . . . . . . .<%= item.item_type %></label>   </td>
+		<td>
+	    <select class='drop-down' form='order-form' name="donut[<%=item.item_type%>]">
+				<option value="0">   </option>  
+				<option style='color:black' value="1"> 1 </option>
+				<option style='color:black' value="2"> 2 </option>
+				<option style='color:black' value="3"> 3 </option>
+				<option style='color:black' value="4"> 4 </option>
+				<option style='color:black' value="5"> 5 </option>
+			</select>
+	  </td>
+	</tr>
+<% end %>

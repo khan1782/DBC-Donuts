@@ -1,5 +1,6 @@
 <h2>Recent Orders for <%= @user.first_name %></h2>
 <% @user.orders.each do |order|%>
+<article>
 <h3><%= standard_datetime(order.created_at)%></h3>
 <ul>
 	<li class='order-title'><%= order.wholesale.donutshop.name %></li>
@@ -7,4 +8,9 @@
 	<li><%= donut.donut_type %></li>
 	<% end %>
 </ul>
+	<p>Subtotal: <%=money(order.subtotal)%></p>
+	<p>Delivery Cost: <%=money(order.delivery_cost)%></p>
+	<p>Tax: <%=money(order.tax)%></p>
+	<p><b>Total: <%=money(order.total)%></p></b>
+</article>
 <% end %>
